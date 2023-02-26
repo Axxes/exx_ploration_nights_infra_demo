@@ -2,8 +2,11 @@
 ## Ansible
 
 ## Terraform
+# ignore ssh keys
+*id_rsa*
 # Local .terraform directories
-**/.terraform/*
+terraform/vm_setup/.terraform/*
+terraform/jenkins/.terraform/*
 
 # .tfstate files
 *.tfstate
