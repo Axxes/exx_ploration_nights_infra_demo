@@ -1,17 +1,17 @@
-resource "aws_instance" "jenkins" {
-  ami                = "ami-06e0ce9d3339cb039"
-  instance_type      = "t2.micro"
+resource "aws_instance" "web" {
+  ami           = "ami-06e0ce9d3339cb039"
+  instance_type = "t2.micro"
   key_name           = aws_key_pair.ssh.key_name
-  vpc_security_group_ids = [aws_security_group.jenkins_allow_ssh.id]
-  subnet_id          = aws_subnet.main.id
+  vpc_security_group_ids = [aws_security_group.web_allow_ssh.id]
+  subnet_id          = var.public_subnet_id
   tags               = merge(var.default_tags,
-    { Name = "jenkins_instance" })
+    { Name = "web_instance" })
 }
 
-resource "aws_security_group" "jenkins_allow_ssh" {
-  name        = "jenkins_allow_ssh"
+resource "aws_security_group" "web_allow_ssh" {
+  name        = "web_allow_ssh"
   description = "Allow ssh inbound traffic"
-  vpc_id      = aws_vpc.main.id
+  vpc_id      = var.vpc_id
 
   ingress {
     description      = "SSH"
@@ -30,10 +30,10 @@ resource "aws_security_group" "jenkins_allow_ssh" {
     ipv6_cidr_blocks = ["::/0"]
   }
   tags = merge(var.default_tags,
-    { Name = "jenkins_allow_ssh" })
+    { Name = "web_allow_ssh" })
 }
 
-resource "aws_eip" "jenkins_public_ip" {
-  instance = aws_instance.jenkins.id
+resource "aws_eip" "web_public_ip" {
+  instance = aws_instance.web.id
   vpc      = true
 }

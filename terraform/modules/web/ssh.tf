@@ -8,7 +8,7 @@ resource "aws_key_pair" "ssh" {
 }
 
 resource "local_file" "ssh_private_key" {
-  filename = "vms_id_rsa_ssh"
+  filename = "web_id_rsa_ssh"
   content  = tls_private_key.ssh_key.private_key_pem
 }
 

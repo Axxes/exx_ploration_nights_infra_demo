@@ -1,0 +1,4 @@
+aws sso configure
+    https://axxes.awsapps.com/start#/
+    eu-west-1
+aws sso login --profile workshop-sandbox-2023
