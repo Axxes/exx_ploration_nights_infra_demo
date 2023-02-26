@@ -4,7 +4,7 @@ resource "aws_instance" "jenkins" {
   key_name           = aws_key_pair.ssh.key_name
   vpc_security_group_ids = [aws_security_group.jenkins_allow_ssh.id]
   subnet_id          = aws_subnet.main.id
-  tags               = merge(local.default_tags,
+  tags               = merge(var.default_tags,
     { Name = "jenkins_instance" })
 }
 
@@ -29,7 +29,7 @@ resource "aws_security_group" "jenkins_allow_ssh" {
     cidr_blocks      = ["0.0.0.0/0"]
     ipv6_cidr_blocks = ["::/0"]
   }
-  tags = merge(local.default_tags,
+  tags = merge(var.default_tags,
     { Name = "allow_tls" })
 }
 

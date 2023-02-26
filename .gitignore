@@ -5,8 +5,7 @@
 # ignore ssh keys
 *id_rsa*
 # Local .terraform directories
-terraform/vm_setup/.terraform/*
-terraform/jenkins/.terraform/*
+terraform/.terraform/*
 
 # .tfstate files
 *.tfstate
