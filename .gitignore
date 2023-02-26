@@ -1,3 +1,7 @@
+.idea
+## Ansible
+
+## Terraform
 # Local .terraform directories
 **/.terraform/*
 
