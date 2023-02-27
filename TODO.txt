@@ -1,9 +1,11 @@
 ## Terraform
-- Add loadbalancer
-- Add extra web vm (count)
+- Refactor ssh.tf to only use one key for all machines
+- Add loadbalancer module
+- Add extra web vm (count outside module)
 - Add http security group for web vm's
 ## Ansible
 - Configure web vms with ansible
 ## Jenkins
-- Configure jenkins server (manual or through ansible)
-- Add jenkins build plan
+- Configure jenkins server (manual)
+    - Configure one already manually to be prepared (manual branch)
+- Add jenkins build plan (on the spot)
