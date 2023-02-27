@@ -1,0 +1,6 @@
+- Add loadbalancer
+- Add extra web vm (count)
+- Add http security group for web vm's
+- Configure web vms with ansible
+- Configure jenkins server (manual or through ansible)
+- Add jenkins build plan
