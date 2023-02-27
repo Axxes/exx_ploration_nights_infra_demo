@@ -1,6 +1,7 @@
 aws sso configure
     https://axxes.awsapps.com/start#/
     eu-west-1
+    workshop-sandbox-2023
 aws sso login --profile workshop-sandbox-2023
 
 ssh -i .\jenkins_id_rsa_ssh ec2-user@

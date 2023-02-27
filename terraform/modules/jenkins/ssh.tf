@@ -5,6 +5,7 @@ resource "tls_private_key" "ssh_key" {
 
 resource "aws_key_pair" "ssh" {
   public_key = tls_private_key.ssh_key.public_key_openssh
+  tags = var.default_tags
 }
 
 resource "local_file" "ssh_private_key" {

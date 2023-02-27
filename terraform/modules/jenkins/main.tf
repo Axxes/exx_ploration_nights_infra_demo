@@ -78,4 +78,5 @@ resource "aws_security_group" "jenkins_allow_http" {
 resource "aws_eip" "jenkins_public_ip" {
   instance = aws_instance.jenkins.id
   vpc      = true
+  tags = var.default_tags
 }
