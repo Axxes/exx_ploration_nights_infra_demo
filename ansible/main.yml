@@ -1,6 +1,6 @@
 ---
 - name: test connection to servers
-  hosts: all
+  hosts: webservers
   tasks:
     - name: install httpd
       become: yes
@@ -26,3 +26,11 @@
         owner: jenkins
         group: jenkins
         mode: '0644'
+    - name: copy web rsa key
+      become: yes
+      ansible.builtin.copy:
+        src: ../terraform/web_id_rsa_ssh
+        dest: /var/lib/jenkins/keys/web_id_rsa_ssh
+        owner: jenkins
+        group: jenkins
+        mode: '0600'

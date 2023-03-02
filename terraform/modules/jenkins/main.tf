@@ -37,6 +37,13 @@ resource "aws_security_group" "jenkins_allow_ssh" {
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
+
+  egress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
   tags = merge(var.default_tags,
     { Name = "jenkins_allow_ssh" })
 }
