@@ -1,0 +1,16 @@
+---
+- name: test connection to servers
+  hosts: all
+  tasks:
+    - name: install httpd
+      become: yes
+      ansible.builtin.package:
+        name: httpd
+        state: present
+
+    - name: start and enable httpd service
+      become: yes
+      ansible.builtin.service:
+        name: httpd
+        state: restarted
+        enabled: true
