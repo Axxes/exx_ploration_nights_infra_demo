@@ -14,3 +14,15 @@
         name: httpd
         state: restarted
         enabled: true
+
+- name: copy files to jenkins
+  hosts: jenkins
+  tasks:
+    - name: copy html page
+      become: yes
+      ansible.builtin.copy:
+        src: resources/index.html
+        dest: /var/lib/jenkins/templates/index.html
+        owner: jenkins
+        group: jenkins
+        mode: '0644'
