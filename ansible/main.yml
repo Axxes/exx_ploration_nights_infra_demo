@@ -15,14 +15,45 @@
         state: restarted
         enabled: true
 
+    - name: Recursively change permission of directory
+      become: yes
+      ansible.builtin.file:
+        path: /var/www/html
+        state: directory
+        mode: '0777'
+
 - name: copy files to jenkins
   hosts: jenkins
   tasks:
-    - name: copy html page
+    - name: copy html page 1
       become: yes
       ansible.builtin.copy:
-        src: resources/index.html
-        dest: /var/lib/jenkins/templates/index.html
+        src: resources/index_1.html
+        dest: /var/lib/jenkins/templates/index_1.html
+        owner: jenkins
+        group: jenkins
+        mode: '0644'
+    - name: copy image 1
+      become: yes
+      ansible.builtin.copy:
+        src: resources/traineeship_image_1.png
+        dest: /var/lib/jenkins/templates/traineeship_image_1.png
+        owner: jenkins
+        group: jenkins
+        mode: '0644'
+    - name: copy html page 2
+      become: yes
+      ansible.builtin.copy:
+        src: resources/index_2.html
+        dest: /var/lib/jenkins/templates/index_2.html
+        owner: jenkins
+        group: jenkins
+        mode: '0644'
+    - name: copy image 2
+      become: yes
+      ansible.builtin.copy:
+        src: resources/traineeship_image_2.png
+        dest: /var/lib/jenkins/templates/traineeship_image_2.png
         owner: jenkins
         group: jenkins
         mode: '0644'
