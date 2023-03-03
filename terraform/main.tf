@@ -11,7 +11,7 @@ module "loadbalanced_vms" {
 
   number_of_vms    = 2
   default_tags     = local.default_tags
-  public_subnet_id = module.jenkins.network_public_subnet_id
+  public_subnet_ids = module.jenkins.network_public_subnet_ids
   vpc_id           = module.jenkins.network_vpc_id
 }
 
