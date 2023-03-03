@@ -74,9 +74,9 @@ resource "aws_lb_target_group" "web_lb_tg" {
 }
 
 resource "aws_lb_target_group_attachment" "web_lb_tg_attachment" {
-  for_each = toset(module.web[*].web_instance_id)
+  count = length(module.web)
   target_group_arn = aws_lb_target_group.web_lb_tg.arn
-  target_id        = each.key
+  target_id        = module.web[count.index].web_instance_id
   port             = 80
 }
 
@@ -86,8 +86,6 @@ resource "aws_lb" "web_lb" {
   load_balancer_type = "application"
   security_groups    = [aws_security_group.web_lb_security_group.id]
   subnets            = var.public_subnet_ids
-
-  enable_deletion_protection = true
 
   tags = var.default_tags
 }
