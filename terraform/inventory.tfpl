@@ -2,3 +2,6 @@
 %{ for ip in ansible_web_ips ~}
 ${ ip } ansible_ssh_private_key_file=../terraform/web_id_rsa_ssh ansible_user=ec2-user
 %{ endfor ~}
+
+[jenkins]
+${ ansible_jenkins_ip } ansible_ssh_private_key_file=../terraform/jenkins_id_rsa_ssh ansible_user=ec2-user
