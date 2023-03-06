@@ -1,7 +1,7 @@
 terraform {
   backend "s3" {
     bucket         = "axxes-cloud-workshop-sandbox-2023-tfstate"
-    key            = "exxploration_nights/predemo.tfstate"
+    key            = "exxploration_nights/main.tfstate"
     region         = "eu-west-1"
     encrypt        = true
     dynamodb_table = "axxes-cloud-workshop-sandbox-2023-tfstate-lock"
