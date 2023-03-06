@@ -42,9 +42,7 @@
         state: latest
 
     - name: Install java
-      yum:
-        name: java-11-openjdk-devel
-        state: present
+      ansible.builtin.shell: '/usr/bin/amazon-linux-extras install java-openjdk11 -y'
 
     - name: Install jenkins
       yum:
@@ -60,6 +58,16 @@
         name: jenkins
         state: started
         enabled: true
+
+    - name: Create a templates directory if it does not exist
+      ansible.builtin.file:
+        path: /var/lib/jenkins/templates
+        state: directory
+
+    - name: Create a keys directory if it does not exist
+      ansible.builtin.file:
+        path: /var/lib/jenkins/keys
+        state: directory
 
 - name: copy files to jenkins
   hosts: jenkins
