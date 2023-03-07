@@ -1,0 +1,7 @@
+pwd
+ls
+%{ for index,ip in ansible_web_ips ~}
+scp -i /var/lib/jenkins/keys/web_id_rsa_ssh -o StrictHostKeyChecking=no /var/lib/jenkins/templates/index_${ index + 1 }.html ec2-user@${ ip }:/var/www/html/index.html
+scp -i /var/lib/jenkins/keys/web_id_rsa_ssh -o StrictHostKeyChecking=no /var/lib/jenkins/templates/traineeship_image_1.png ec2-user@${ ip }:/var/www/html/traineeship_image_1.png
+scp -i /var/lib/jenkins/keys/web_id_rsa_ssh -o StrictHostKeyChecking=no /var/lib/jenkins/templates/traineeship_image_2.png ec2-user@${ ip }:/var/www/html/traineeship_image_2.png
+%{ endfor ~}

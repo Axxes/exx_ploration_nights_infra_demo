@@ -35,3 +35,13 @@ resource "local_file" "ansible_inventory" {
   filename        = "inventory.ini"
   file_permission = "0644"
 }
+
+resource "local_file" "jenkins_build_commands" {
+  content = templatefile("build_plan_shell_commands.sh.tfpl",
+    {
+      ansible_web_ips = module.loadbalanced_vms.web_public_ips
+    }
+  )
+  filename        = "../jenkins/build_plan_shell_commands.sh"
+  file_permission = "0644"
+}
