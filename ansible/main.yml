@@ -69,6 +69,19 @@
         path: /var/lib/jenkins/keys
         state: directory
 
+    - name: Wait until the initial admin password for jenkins is present before continuing
+      ansible.builtin.wait_for:
+        path: /var/lib/jenkins/secrets/initialAdminPassword
+
+    - name: Slurp the initial Jenkins password
+      ansible.builtin.slurp:
+        src: /var/lib/jenkins/secrets/initialAdminPassword
+      register: initialAdminPassword
+
+    - name: Print initialAdminPassword of Jenkins
+      ansible.builtin.debug:
+        msg: "{{ initialAdminPassword['content'] | b64decode }}"
+
 - name: copy files to jenkins
   hosts: jenkins
   tasks:
